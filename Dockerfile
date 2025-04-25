@@ -1,5 +1,5 @@
 # Build stage
-FROM eclipse-temurin:24-jdk-jammy as builder
+FROM openjdk:24-jdk as builder
 
 # Set working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Run stage
-FROM eclipse-temurin:24-jre-jammy
+FROM openjdk:24-jdk
 
 # Create a non-root user
 RUN groupadd -r spring && useradd -r -g spring spring
